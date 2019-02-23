@@ -1,13 +1,15 @@
-## Insight Datascience Challenge 2019  
+# Insight Datascience Challenge 2019  
 Solution submitted by Karthik for the Insight datascience challenge
 
-
-## Overview of the solution
-
+# Table of contents
 
 
+# Overview of the solution
 
-## Directory structure
+
+
+
+# Directory structure
 The test large data set is not part of the repo. The user is required to download the tests suite in the correct location. 
 The test_large is downloaded from [link](https://drive.google.com/file/d/1fxtTLR_Z5fTO-Y91BnKOQd6J0VC9gPO3/view)
 
@@ -33,18 +35,18 @@ The test_large is downloaded from [link](https://drive.google.com/file/d/1fxtTLR
     └── pharmacy-counting.py
 
 
-## Required Libraries
+# Required Libraries
 
 
 
-## Commands to run 
-
-
-
-
-## Expected Output 
+# Commands to run 
 
 
 
 
-## Final Comments
+# Expected Output 
+
+
+
+
+# Final Comments
