@@ -8,8 +8,8 @@ Solution submitted by Karthik for the Insight datascience challenge
 
 
 ## Directory structure
-# The test large data set is not part of the repo. The user is required to download the tests suite in the correct location. 
-# The test_large is downloaded from [link](https://drive.google.com/file/d/1fxtTLR_Z5fTO-Y91BnKOQd6J0VC9gPO3/view)
+The test large data set is not part of the repo. The user is required to download the tests suite in the correct location. 
+The test_large is downloaded from [link](https://drive.google.com/file/d/1fxtTLR_Z5fTO-Y91BnKOQd6J0VC9gPO3/view)
 
 ├── README.md
 ├── input
