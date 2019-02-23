@@ -2,7 +2,6 @@
 """
 Created on Fri Feb 22 10:13:22 2019
 
-@author: AdityaChanodia
 """
 #Input
 #id,prescriber_last_name,prescriber_first_name,drug_name,drug_cost
@@ -12,11 +11,17 @@ Created on Fri Feb 22 10:13:22 2019
 #1000000004,Rodriguez,Maria,CHLORPROMAZINE,2000
 #1000000005,Smith,David,BENZTROPINE MESYLATE,1500
 
+#TODO: this should be generic path. User can provide anypath and it should work. 
+#TODO: Check if the input is correct and if path exists. Throw error if the path does and also throw error if the file data format incorrect. 
 
-text_file = open("itcont.txt", "r")
+text_file = open("./input/itcont.txt", "r")
+
+#TODO: Optimization  -  check for faster file read libraries. 
 lines = text_file.read().split('\n')
 text_file.close()
 
+
+#TODO: Add comments in the code. DETAILED!!!
 drug_names = []
 my_dict = {}
 
@@ -43,8 +48,8 @@ for i in range(len(lines)):
 #
 #i =5 {A:300, C:3000 B:1500}
 
-
-with open('top_cost_drug.txt', 'a') as output:
+#TODO: This file location needs tobe generic. It should take from correct path store it in right path. The path variable needs to be automatically desciphered. 
+with open('./output/top_cost_drug.txt', 'w') as output:
     
     header = "drug_name,num_prescriber,total_cost\n"
     output.write(header)
