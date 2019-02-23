@@ -11,10 +11,27 @@ Created on Fri Feb 22 10:13:22 2019
 #1000000004,Rodriguez,Maria,CHLORPROMAZINE,2000
 #1000000005,Smith,David,BENZTROPINE MESYLATE,1500
 
-#TODO: this should be generic path. User can provide anypath and it should work. 
-#TODO: Check if the input is correct and if path exists. Throw error if the path does and also throw error if the file data format incorrect. 
 
-text_file = open("./input/itcont.txt", "r")
+#TODO: Check if the input is correct and if path exists. Throw error if the path does and also throw error if the file data format incorrect. 
+import sys
+
+global text_file
+
+if(len(sys.argv)==1):
+	print("ERROR: Require Filename")
+	sys.exit(-1)
+
+try:
+    text_file = open(sys.argv[1], 'r')
+    # Store configuration file values
+except FileNotFoundError:
+    print("ERROR: File does not exist the specified path.")
+    sys.exit(-1)
+
+#TODO: Check for format
+
+
+#text_file = open("./input/itcont.txt", "r")
 
 #TODO: Optimization  -  check for faster file read libraries. 
 lines = text_file.read().split('\n')
