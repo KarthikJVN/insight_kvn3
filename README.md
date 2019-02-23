@@ -2,9 +2,14 @@
 Solution submitted by Karthik for the Insight datascience challenge
 
 # Table of contents
+1. [Overview](README.md#Overview)
+1. [Directory Structure](README.md#Directory-Structure)
+1. [Required Libraries](README.md#Required-Libraries)
+1. [Instructions](README.md#Instructions)
+1. [Expected Outputs](README.md#Expected-Output)
+1. [Final Comments](README.md#Final-Comments)
 
-
-# Overview of the solution
+# Overview
 
 
 
@@ -39,7 +44,7 @@ The test_large is downloaded from [link](https://drive.google.com/file/d/1fxtTLR
 
 
 
-# Commands to run 
+# Instructions
 
 
 
