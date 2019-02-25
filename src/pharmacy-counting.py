@@ -12,48 +12,75 @@ Created on Fri Feb 22 10:13:22 2019
 #1000000005,Smith,David,BENZTROPINE MESYLATE,1500
 
 
-#TODO: Check if the input is correct and if path exists. Throw error if the path does and also throw error if the file data format incorrect. 
 import sys
 
 global text_file
+global out_file
+#This is the default output file location.
+out_file='./output/top_cost_drug.txt'
 
-if(len(sys.argv)==1):
+if(len(sys.argv)<2):
 	print("ERROR: Require Filename")
+	print("Format: python3 src/pharmacy-counting.py <input data file> <output data file>")
 	sys.exit(-1)
 
 try:
     text_file = open(sys.argv[1], 'r')
+    print("INFO: Input File:", sys.argv[1])
     # Store configuration file values
 except FileNotFoundError:
     print("ERROR: File does not exist the specified path.")
     sys.exit(-1)
 
-#TODO: Check for format
+try:
+	out_file = sys.argv[2]
+except IndexError:
+	out_file='./output/top_cost_drug.txt'
+	print("INFO: Taking Default Output file")
 
+print("INFO: Output File:", out_file)
 
-#text_file = open("./input/itcont.txt", "r")
-
-#TODO: Optimization  -  check for faster file read libraries. 
 lines = text_file.read().split('\n')
 text_file.close()
 
+#TODO: Check for format
+#print(lines[0].split(",")[0])
+#id,prescriber_last_name,prescriber_first_name,drug_name,drug_cost
+#if any(x in str for x in a):
+   
 
-#TODO: Add comments in the code. DETAILED!!!
 drug_names = []
 my_dict = {}
+
+#For progress bar setting
+#toolwidth = len(lines) 
+#sys.stdout.write("[%s]" % (" " * toolbar_width))
+#sys.stdout.flush()
+#sys.stdout.write("\b" * (toolbar_width+1)) # return to start of line, after '['
 
 for i in range(len(lines)):
      if i!=0:
          temp = lines[i].split(",")
-         drug = temp[3]
-         cost = temp[4]
-         
+         #temp = temp.decode('utf8').encode('utf-8')
+         if len(temp) == 5:
+             drug = temp[3]
+             cost = temp[4]
+         if len(temp) == 6:
+             drug = temp[3] + "," + temp[4]
+             cost = temp[5]
+             
          drug_names.append(drug)
          
          if drug not in my_dict.keys():
-             my_dict[drug] = int(cost)
+             my_dict[drug] = float(cost)
          else:
-             my_dict[drug] += int(cost)
+             my_dict[drug] += float(cost)
+         
+         #for progress bar
+         #sys.stdout.write("-")
+         #sys.stdout.flush()
+
+sys.stdout.write("\n")
 #initial = {}
 #i = 1 {A:100}
 #
@@ -65,8 +92,7 @@ for i in range(len(lines)):
 #
 #i =5 {A:300, C:3000 B:1500}
 
-#TODO: This file location needs tobe generic. It should take from correct path store it in right path. The path variable needs to be automatically desciphered. 
-with open('./output/top_cost_drug.txt', 'w') as output:
+with open(out_file, 'w') as output:
     
     header = "drug_name,num_prescriber,total_cost\n"
     output.write(header)
