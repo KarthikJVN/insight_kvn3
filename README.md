@@ -51,11 +51,7 @@ bash run.sh
 To run all test case:
 bash insight_testsuite/run_tests.sh
 
-
-
 # Expected Output 
-
-
 
 
 # Final Comments
