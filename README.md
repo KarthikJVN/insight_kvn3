@@ -10,13 +10,15 @@ Solution submitted by Karthik for the Insight datascience challenge
 1. [Final Comments](README.md#Final-Comments)
 
 # Overview
-
+pharmacy-counting.py is the final code which prompts the user to specify the input and output file paths.
 
 
 
 # Directory structure
 The test large data set is not part of the repo. The user is required to download the tests suite in the correct location. 
 The test_large is downloaded from [link](https://drive.google.com/file/d/1fxtTLR_Z5fTO-Y91BnKOQd6J0VC9gPO3/view)
+
+The directory structure is similar to the one given in the question and is as follows-
 
      ├── README.md
      ├── input
@@ -51,7 +53,7 @@ bash run.sh
 To run all test case:
 bash insight_testsuite/run_tests.sh
 
+pharmacy-counting.py is the final code which needs to be run after specifying the input/output file paths appropriately.
+
 # Expected Output 
-
-
-# Final Comments
+The output expected is of the form as given in the question. As the code has been run on the entire test set, the output corresponding to the test set has been obtained.
