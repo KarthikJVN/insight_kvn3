@@ -7,7 +7,7 @@ Solution submitted by Karthik for the Insight datascience challenge
 1. [Required Libraries](README.md#Required-Libraries)
 1. [Instructions](README.md#Instructions)
 1. [Expected Outputs](README.md#Expected-Output)
-1. [Final Comments](README.md#Final-Comments)
+
 
 # Overview
 pharmacy-counting.py is the final code which prompts the user to specify the input and output file paths.
@@ -56,4 +56,4 @@ To run all test case:
 pharmacy-counting.py is the final code which needs to be run after specifying the input/output file paths appropriately.
 
 # Expected Output 
-The output expected is of the form as given in the question. As the code has been run on the entire test set, the output corresponding to the test set has been obtained.
+The output expected is of the form as given in the question. As the code has been run on the entire test set, the output corresponding to the test set has been obtained and can be found in the output section of the submission repository.
