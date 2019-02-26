@@ -1,15 +1,7 @@
 # -*- coding: utf-8 -*-
-"""
-Created on Fri Feb 22 10:13:22 2019
 
-"""
-#Input
-#id,prescriber_last_name,prescriber_first_name,drug_name,drug_cost
-#1000000001,Smith,James,AMBIEN,100
-#1000000002,Garcia,Maria,AMBIEN,200
-#1000000003,Johnson,James,CHLORPROMAZINE,1000
-#1000000004,Rodriguez,Maria,CHLORPROMAZINE,2000
-#1000000005,Smith,David,BENZTROPINE MESYLATE,1500
+## This code has been tested on the entire 1.1 GB test data provided and it works consistently. 
+## It also takes into account certain types of outlier cases where even the drug name has commas or numbers.
 
 
 import sys
@@ -40,67 +32,57 @@ except IndexError:
 
 print("INFO: Output File:", out_file)
 
-lines = text_file.read().split('\n')
-text_file.close()
 
-#TODO: Check for format
-#print(lines[0].split(",")[0])
-#id,prescriber_last_name,prescriber_first_name,drug_name,drug_cost
-#if any(x in str for x in a):
-   
+#text_file = open("de_cc_data.txt", "r")  # The corresponding input text file is opened
+lines = text_file.read().split('\n') # The text within the file is split based on a new line and stored in variable "lines"
+text_file.close() # The text file is closed
 
-drug_names = []
-my_dict = {}
 
-#For progress bar setting
-#toolwidth = len(lines) 
-#sys.stdout.write("[%s]" % (" " * toolbar_width))
-#sys.stdout.flush()
-#sys.stdout.write("\b" * (toolbar_width+1)) # return to start of line, after '['
+drug_names = [] # An empty list named "drug_names" is created to store the names of the drugs
+my_dict = {}    # An empty dictionary named "my_dict is created"
 
-for i in range(len(lines)):
-     if i!=0:
-         temp = lines[i].split(",")
-         #temp = temp.decode('utf8').encode('utf-8')
-         if len(temp) == 5:
-             drug = temp[3]
-             cost = temp[4]
-         if len(temp) == 6:
-             drug = temp[3] + "," + temp[4]
-             cost = temp[5]
+
+
+## The for loop iterates throughout the contents of the text file and goes through every line
+
+for i in range(len(lines)): # We iterate over each line 
+     if i!=0:       # Makes sure that we iterate through the limits of the text file contents
+         temp = lines[i].split(",")     # We split each line based on commas 
+         if len(temp) == 5:     # If after splitting based on commas, there are only 5 fields/columns it implies that the text can be categorised accurately
+             drug = temp[3]  # The drug name in the corresponding position is stored in variable "drug"
+             cost = temp[4]  # The cost in the corresponding position is stored in variable "cost"
+
+         elif len(temp) > 5:  # If the number of fields obtained after a comma based split is greater than 5, it means that the drug names may have a comma and need to be dealt with accordingly
              
-         drug_names.append(drug)
-         
-         if drug not in my_dict.keys():
-             my_dict[drug] = float(cost)
+             if '"' in temp[-2]:    # If "" is found at the position being tested for, it should be a part of the drug name
+                 drug = (temp[-3] + "," + temp[-2])     # The drug name would be a combination of both fields obtained from their respective positions
+             else:              # In case the field found is not enclosed in "" the usual process of assigning the cost and drug name separately is followed
+                 drug = temp[-2]    # Drug name is stored in variable "drug"
+             cost = temp[-1]        # Cost is stored in variable "cost"
+            
          else:
-             my_dict[drug] += float(cost)
+             continue
+
+         drug_names.append(drug)    # The drug names are appended to the list "drug_names" created earlier
          
-         #for progress bar
-         #sys.stdout.write("-")
-         #sys.stdout.flush()
+         if drug not in my_dict.keys():  # The 'my_dict' dictionary is used to store costs according to drug names. , otherwise it sums with the previous cost.
+             my_dict[drug] = float(cost)    # If the name isn't there in the dictionary already, it stores the cost with the key being the drug name.  
+         else:
+             my_dict[drug] += float(cost)   # If the name is already present in the dictionary, the cost is added to the previous cost for the same drug.
 
-sys.stdout.write("\n")
-#initial = {}
-#i = 1 {A:100}
-#
-#i =2 {A:300}
-#
-#i =3 {A:300, C:1000}
-#
-#i =4 {A:300, C:3000}
-#
-#i =5 {A:300, C:3000 B:1500}
 
-with open(out_file, 'w') as output:
+
+
+
+
+with open('top_cost_drug.txt', 'a') as output:  # The output generated is stored as "top_cost_drug.txt"
     
-    header = "drug_name,num_prescriber,total_cost\n"
-    output.write(header)
+    header = "drug_name,num_prescriber,total_cost\n"    # The titles for the various fields in the output are stored as header
+    output.write(header)    # Writes Header to output file
     
-    for key, value in my_dict.items():
-        count = drug_names.count(key)
-        final_string = key + "," + str(count) + "," + str(value) + "\n"
-#        A,2,300
-#        C,2,3000
-#        B,1,1500
-        output.write(final_string)
+    for key, value in my_dict.items(): # We iterate through the "my_dict" dictionary
+        count = drug_names.count(key)   # Count the number of occurrences of each drug name using the key values in "my_dict"
+        final_string = key + "," + str(count) + "," + str(value) + "\n"  # Output has drug name, count and total cost
+#        
+        output.write(final_string)  # Writing final output
+
