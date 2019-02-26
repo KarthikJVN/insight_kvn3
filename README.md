@@ -48,10 +48,10 @@ None
 
 # Instructions
 To run basic test case:
-bash run.sh
+     bash run.sh
 
 To run all test case:
-bash insight_testsuite/run_tests.sh
+     bash insight_testsuite/run_tests.sh
 
 pharmacy-counting.py is the final code which needs to be run after specifying the input/output file paths appropriately.
 
